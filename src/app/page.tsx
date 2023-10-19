@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import Lista from "./componentes/lista";
 import Loading from "./loading";
@@ -6,7 +6,11 @@ import Loading from "./loading";
 export default function Home() {
   const [ano, setAno] = useState("2023");
   const [mes, setMes] = useState("01"); // Inicialize com "01" (Janeiro)
-  const [links, setLinks] = useState<string[] | null>([]);
+
+  const [links, setLinks] = useState<String[]>([
+    "boletim/2023-10-19_O_194_boletim_interno_.pdf",
+    "boletim/2023-10-18_O_193_boletim_interno_.pdf",
+  ]);
 
   // Mapeamento de nomes de mês para números
   const mesNumeroMap = {
@@ -25,26 +29,29 @@ export default function Home() {
   };
 
   useEffect(() => {
-
-    console.log("ENTRANDO NO USEEFFECT!")
+    console.log("ENTRANDO NO USEEFFECT!");
 
     async function fetchAndParseData() {
-      const url = `http://sisbol.ect.eb.mil.br/band/baixar_boletim.php?codTipoBol=1&ano=${ano}&mes=${mes}`;
-
       try {
-        const response = await fetch(url);
+        const response = await fetch(
+          `http://sisbol.ect.eb.mil.br/band/baixar_boletim.php?codTipoBol=1&ano=${ano}&mes=${mes}`
+        );
 
-        if (response.status != 200) {
+        if (!response.ok) {
           throw new Error(
             `Falha na solicitação HTTP: ${response.status} - ${response.statusText}`
           );
         }
 
-        const text: any = await response.text();
+        const text = await response.text();
+        const pdfLinks: any = text.match(
+          /boletim\/\d+-\d+-\d+_O_\d+_boletim_interno_.pdf/g
+        );
 
-        setLinks(text);
+        console.log(pdfLinks);
+        setLinks(pdfLinks);
       } catch (error) {
-        console.error(`Erro: ${error}`);
+        console.log(`Erro: ${error}`);
         setLinks([]);
       }
     }
@@ -83,10 +90,9 @@ export default function Home() {
             ))}
           </select>
         </div>
-
-        <div className="border border-gray-800 p-2">
-          <Lista dados={links} /
-        </div>
+      </div>
+      <div className="border border-gray-800 p-2">
+        {links.length > 0 ? <Lista dados={links}></Lista> : <Loading />}
       </div>
     </main>
   );
