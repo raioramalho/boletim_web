@@ -51,38 +51,42 @@ export default function Home() {
             }
 
 
-            let dados = [];
+            let listaDeBoletins: String[] = [];
 
             for (let index = 0; index < pdfLinks.length; index++) {
               if (pdfLinks[index] != pdfLinks[index - 1]) {
-                dados.push(pdfLinks[index]);
+                listaDeBoletins.push(pdfLinks[index]);
               }
             }
 
-            setLinks(dados);
-            return await dados;
+            setLinks(listaDeBoletins);
+            return listaDeBoletins;
           })
           .catch((error) => {
             console.error(error);
           });
 
-        const objetos = dados.map((string) => {
-          const partes = string.split("_");
-          const anoMesNumero = partes[0].split("/")[1];
 
-          const ano = anoMesNumero.slice(0, 4);
-          const mes = anoMesNumero.slice(5, 7);
-          const numero = partes[2];
+        // const objetos = dados.map((string: string) => {
+        //   const partes = string.split("_");
+        //   const anoMesNumero = partes[0].split("/")[1];
 
-          return {
-            ano,
-            mes,
-            numero,
-            link: string,
-          };
-        });
+        //   const ano = anoMesNumero.slice(0, 4);
+        //   const mes = anoMesNumero.slice(5, 7);
+        //   const numero = partes[2];
+
+        //   return {
+        //     ano,
+        //     mes,
+        //     numero,
+        //     link: string,
+        //   };
+        // });
 
         // console.log(objetos);
+
+
+
       } catch (error) {
         console.log(`Erro: ${error}`);
         setLinks([]);
@@ -123,7 +127,7 @@ export default function Home() {
             onChange={(e) => setMes(e.target.value)}
             className="dark:bg-gray-800 dark:text-white rounded-md p-2"
           >
-            {Object.keys(mesNumeroMap).map((nomeMes: any) => (
+            {Object.keys(mesNumeroMap).map((nomeMes) => (
               <option key={nomeMes} value={mesNumeroMap[nomeMes]}>
                 {nomeMes}
               </option>
