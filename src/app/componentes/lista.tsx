@@ -69,7 +69,9 @@ export default function Lista({ dados }: { dados: string[] }) {
         contentLabel="Modal"
       >
         <br></br>
-        <button onClick={closeModal}>Fechar</button>
+        <button className="text-red-800 font-bold" onClick={closeModal}>
+          Fechar
+        </button>
         {currentLink && (
           <iframe
             src={`http://sisbol.ect.eb.mil.br/band/${currentLink}`}
