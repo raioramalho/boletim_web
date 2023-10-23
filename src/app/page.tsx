@@ -103,7 +103,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between p-14 mb-2">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex z-0">
         <h1 className="text-2xl mb-4">BOLETIM INTERNO</h1>
         <div className="mb-4">
           <label htmlFor="anoSelect">Ano : </label>

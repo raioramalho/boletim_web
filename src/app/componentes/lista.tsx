@@ -27,6 +27,7 @@
 
 import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import React, { useState } from "react";
 import Modal from "react-modal"; // Certifique-se de instalar esta dependência
 
@@ -35,7 +36,6 @@ export default function Lista({ dados }: { dados: string[] }) {
   const [currentLink, setCurrentLink] = useState("");
 
   const openModal = (link: string) => {
-    alert("Aperte ESC para fechar a visualizaçao do boletim!")
     setCurrentLink(link);
     console.log(currentLink);
     setModalIsOpen(true);
@@ -68,17 +68,18 @@ export default function Lista({ dados }: { dados: string[] }) {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Modal"
+        className="z-20"
       >
         <br></br>
-        <button className="text-red-800 font-bold" onClick={closeModal}>
+        <Link className="text-red-500 font-bold p-2 m-1 bg-gray-600 flex flex-row justify-center self-center" onClick={closeModal} href={""}>
           Fechar
-        </button>
+        </Link>
         {currentLink && (
           <iframe
             src={`http://sisbol.ect.eb.mil.br/band/${currentLink}`}
             width="100%"
-            height="500"
-            title="Link Modal"
+            height="700"
+            title={`${currentLink.toUpperCase()}`}
           />
         )}
       </Modal>
