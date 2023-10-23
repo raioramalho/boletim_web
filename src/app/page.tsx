@@ -140,7 +140,7 @@ export default function Home() {
         </div>
       </div>
       <div className="border border-gray-800 p-2 rounded-lg">
-        {links.length <= 0 ? <Loading /> : <Lista dados={links}></Lista>}
+        {links.length <= 0 ? <span className="flex flex-row justify-center self-center text-black dark:text-white">Nenhum Boletim gerado.</span> : <Lista dados={links}></Lista>}
       </div>
     </main>
   );
