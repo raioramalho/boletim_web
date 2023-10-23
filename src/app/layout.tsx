@@ -17,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <span className="flex flex-row justify-center text-gray-900">Alan Ramalho - ramalho.sit@gmail.com</span>
     </html>
   )
 }
