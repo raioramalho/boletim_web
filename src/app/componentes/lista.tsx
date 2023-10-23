@@ -35,6 +35,7 @@ export default function Lista({ dados }: { dados: string[] }) {
   const [currentLink, setCurrentLink] = useState("");
 
   const openModal = (link: string) => {
+    alert("Aperte ESC para fechar a visualizaçao do boletim!")
     setCurrentLink(link);
     console.log(currentLink);
     setModalIsOpen(true);
