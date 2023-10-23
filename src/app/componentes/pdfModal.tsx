@@ -9,7 +9,7 @@ interface PdfModalProps {
   pdfUrl: string;
 }
 
-export default function PdfModal({ isOpen, closeModal, pdfUrl }) {
+export default function PdfModal({ isOpen, closeModal, pdfUrl }: any) {
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="PDF Modal">
       <button onClick={closeModal}>Fechar</button>

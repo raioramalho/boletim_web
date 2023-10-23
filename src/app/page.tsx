@@ -16,7 +16,11 @@ export default function Home() {
 
 
   // Mapeamento de nomes de mês para números
-  const mesNumeroMap = {
+  interface MesNumeroMap {
+    [key: string]: string;
+  }
+
+  const mesNumeroMap: MesNumeroMap = {
     Janeiro: "01",
     Fevereiro: "02",
     Março: "03",
