@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <span className="flex flex-row justify-center text-gray-200 dark:text-gray-900">
+      <span className="flex flex-row justify-center text-gray-500 dark:text-gray-900">
         Copyright © 2023 Alan Ramalho. Todos os direitos reservados. Contato:
         ramalho.sit@gmail.com
       </span>
