@@ -103,7 +103,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between p-14 mb-2">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex z-0">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex -z-0">
         <h1 className="text-2xl mb-4">BOLETIM INTERNO</h1>
         <div className="mb-4">
           <label htmlFor="anoSelect">Ano : </label>
@@ -111,7 +111,7 @@ export default function Home() {
             id="anoSelect"
             value={ano}
             onChange={(e) => setAno(e.target.value)}
-            className="dark:bg-gray-800 dark:text-white rounded-md p-2"
+            className="dark:bg-gray-800 dark:text-white rounded-md p-2 -z-0"
           >
             {Array.from({ length: 10 }, (_, index) => {
               const year = 2023 - index;
@@ -129,7 +129,7 @@ export default function Home() {
             id="mesSelect"
             value={mes}
             onChange={(e) => setMes(e.target.value)}
-            className="dark:bg-gray-800 dark:text-white rounded-md p-2"
+            className="dark:bg-gray-800 dark:text-white rounded-md p-2 -z-0"
           >
             {Object.keys(mesNumeroMap).map((nomeMes) => (
               <option key={nomeMes} value={mesNumeroMap[nomeMes]}>

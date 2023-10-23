@@ -68,7 +68,6 @@ export default function Lista({ dados }: { dados: string[] }) {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Modal"
-        className="z-20"
       >
         <br></br>
         <Link className="text-red-500 font-bold p-2 m-1 bg-gray-600 flex flex-row justify-center self-center" onClick={closeModal} href={""}>
