@@ -1,19 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import Lista from "./componentes/lista";
-import Loading from "./loading";
-import Card from "./componentes/card";
-import { link } from "fs";
 import axios from "axios";
-import { Boletim } from "./boletim";
+import dayjs from "dayjs";
+
 
 export default function Home() {
-  const [ano, setAno] = useState("2023");
-  const [mes, setMes] = useState("01"); // Inicialize com "01" (Janeiro)
+  const [ano, setAno] = useState(`${dayjs().year()}`);
+  const [mes, setMes] = useState(`${dayjs().month()+1}`); // Inicialize com "01" (Janeiro)
 
   const [links, setLinks] = useState<any[]>([]);
-
-
 
   // Mapeamento de nomes de mês para números
   interface MesNumeroMap {
@@ -40,6 +36,9 @@ export default function Home() {
 
     async function fetchAndParseData() {
       try {
+
+        setLinks([]);
+
         const dados = await axios
           .get(
             `http://sisbol.ect.eb.mil.br/band/baixar_boletim.php?codTipoBol=1&ano=${ano}&mes=${mes}`
@@ -103,7 +102,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between p-14 mb-2">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex ">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex">
         <h1 className="text-2xl mb-4">BOLETIM INTERNO</h1>
         <div className="mb-4">
           <label htmlFor="anoSelect">Ano : </label>
