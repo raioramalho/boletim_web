@@ -1,35 +1,8 @@
-// import Link from "next/link";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faFilePdf } from "@fortawesome/free-regular-svg-icons"; // Exemplo de ícone PDF, você pode escolher outros ícones
-
-// export default function Lista({ dados }: { dados: any[] }) {
-//   return (
-//     <div className="text-white rounded-lg">
-//       <ul className="list-disc pl-4">
-//         {dados.map((link, index) => (
-//           <li key={index} className="mb-2">
-//             <Link
-//               href={`http://sisbol.ect.eb.mil.br/band/${link}`}
-//               className="text-blue-500 hover:underline flex items-center"
-//             >
-//               <span className="mr-2">
-//                 <FontAwesomeIcon icon={faFilePdf} />
-//               </span>
-//               {link}
-//             </Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-
 import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
-import Modal from "react-modal"; // Certifique-se de instalar esta dependência
+import Modal from "react-modal";
 
 export default function Lista({ dados }: { dados: string[] }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -37,7 +10,6 @@ export default function Lista({ dados }: { dados: string[] }) {
 
   const openModal = (link: string) => {
     setCurrentLink(link);
-    console.log(currentLink);
     setModalIsOpen(true);
   };
 
@@ -68,19 +40,24 @@ export default function Lista({ dados }: { dados: string[] }) {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Modal"
+        shouldCloseOnEsc={true}
       >
-        <br></br>
-        <Link className="text-red-500 font-bold p-2 m-1 bg-gray-600 flex flex-row justify-center self-center" onClick={closeModal} href={""}>
-          Fechar
-        </Link>
-        {currentLink && (
-          <iframe
-            src={`http://sisbol.ect.eb.mil.br/band/${currentLink}`}
-            width="100%"
-            height="700"
-            title={`${currentLink.toUpperCase()}`}
-          />
-        )}
+        <div className="text-gray-900 p-4">
+          <button
+            onClick={closeModal}
+            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full"
+          >
+            Fechar
+          </button>
+          {currentLink && (
+            <iframe
+              src={`http://sisbol.ect.eb.mil.br/band/${currentLink}`}
+              width="100%"
+              height="700"
+              title={`${currentLink.toUpperCase()}`}
+            />
+          )}
+        </div>
       </Modal>
     </div>
   );
