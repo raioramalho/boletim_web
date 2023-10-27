@@ -27,9 +27,9 @@ export default function Card(props: any) {
   return (
     <div className="bg-white rounded-lg shadow-md p-2 m-2 flex flex-col">
       <div className="flex items-center mb-2">
-        <span className="text-blue-500 mr-2">
+        <div className="text-blue-500 mr-2">
           <FontAwesomeIcon icon={faFilePdf} />
-        </span>
+        </div>
         {/* <Link
           href={`http://sisbol.ect.eb.mil.br/band/${data.link}`}
           className="text-blue-500 hover:underline"
