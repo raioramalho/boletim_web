@@ -100,7 +100,7 @@ export default function Home() {
             </select>
           </div>
         </div>
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col flex-wrap border border-gray-500 rounded-lg w-full mt-4">
         {loading ? <Loading /> : <Lista dados={links} />}
       </div>
     </main>

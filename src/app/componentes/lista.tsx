@@ -1,8 +1,10 @@
 import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import Modal from "react-modal";
+import Card from "./card";
+import Loading from "../loading";
 
 export default function Lista({ dados }: { dados: string[] }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,8 +21,8 @@ export default function Lista({ dados }: { dados: string[] }) {
   };
 
   return (
-    <div className="text-white rounded-lg">
-      <ul className="list-disc pl-4">
+    <div className="text-white rounded-lg flex flex-row flex-wrap justify-center items-center">
+      {/* <ul className="list-disc pl-4">
         {dados.map((link, index) => (
           <li key={index} className="mb-2">
             <button
@@ -34,7 +36,20 @@ export default function Lista({ dados }: { dados: string[] }) {
             </button>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
+      {dados.map((link, index) => (
+        <button
+          key={index}
+          onClick={(e) => {
+            e.preventDefault();
+            openModal(link);
+          }}
+          className="text-blue-500 hover:cursor-pointer p-1 m-1 "
+        >
+          <Card lista={[link]} />
+        </button>
+      ))}
 
       <Modal
         isOpen={modalIsOpen}
